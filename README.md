@@ -19,6 +19,16 @@ Example Usage
           list: hosts.txt
 ```
 
+**GitHub Action running dnsx with custom resolvers**
+
+```yaml
+      - name: 💥 dnsx - DNS Resolver
+        uses: projectdiscovery/dnsx-action@main
+        with:
+          list: hosts.txt
+          resolver: resolver.txt
+```
+
 **Example workflow** - `.github/workflows/dnsx.yml`
 
 
@@ -55,9 +65,10 @@ jobs:
 Available Inputs
 ------
 
-| Key      | Description                                          | Required |
-| -------- | ---------------------------------------------------- | -------- |
-| `list`   | List of hosts to perform DNS resolution              | true     |
-| `output` | File to save output result (default - dnsx.log)      | false    |
-| `json`   | Write results in JSON format                         | false    |
-| `flags`  | Additional dnsx CLI flags to use                     | false    |
+| Key        | Description                                     | Required |
+| ---------- | ----------------------------------------------- | -------- |
+| `list`     | List of hosts to perform DNS resolution         | true     |
+| `output`   | File to save output result (default - dnsx.log) | false    |
+| `json`     | Write results in JSON format                    | false    |
+| `resolver` | List of custom resolvers to use                 | false    |
+| `flags`    | Additional dnsx CLI flags to use                | false    |

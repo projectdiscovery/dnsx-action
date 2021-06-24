@@ -24,6 +24,11 @@ inputs:
     required: false
     default: false
 
+  resolver:
+    description: "List of custom resolvers to use"
+    required: false
+    default: ""
+
 runs:
   using: "composite"
   steps:
@@ -32,6 +37,7 @@ runs:
         [ ! -z ${{ inputs.list }} ] && echo "list=-l ${{ inputs.list}}" >> $GITHUB_ENV
         [ ! -z ${{ inputs.output }} ] && echo "output=-o ${{ inputs.output}}" >> $GITHUB_ENV || echo "output=-o dnsx.log" >> $GITHUB_ENV
         [ ! -z ${{ inputs.flags }} ] && echo "flags=${{ inputs.flags }}" >> $GITHUB_ENV
+        [ ! -z ${{ inputs.resolver }} ] && echo "resolver=-r ${{ inputs.resolver}}" >> $GITHUB_ENV
         ${{ inputs.json }} && echo "json=-json" >> $GITHUB_ENV
         echo "/home/runner/go/bin/" >> $GITHUB_PATH
       shell: bash
@@ -41,5 +47,6 @@ runs:
           ${{ env.list }} \
           ${{ env.output }} \
           ${{ env.json }} \
+          ${{ env.resolver }} \
           ${{ env.flags }}
       shell: bash
